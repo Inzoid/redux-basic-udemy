@@ -10,39 +10,24 @@ class Counter extends Component {
         counter: 0
     }
 
-    counterChangedHandler = ( action, value ) => {
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
-
     render () {
         return (
             <div>
                 <CounterOutput value={this.props.ctr} />
-                <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
-                <CounterControl label="Decrement" clicked={this.props.onDecramentCounter}  />
-                <CounterControl label="Add 10" clicked={this.props.onAddCounter}  />
-                <CounterControl label="Subtract 15" clicked={this.props.onSubtractCounter}  />
+                <CounterControl label="+ Increment" clicked={this.props.onIncrementCounter} />
+                <CounterControl label="- Decrement" clicked={this.props.onDecramentCounter}  />
+                <CounterControl label="+ Add 10" clicked={this.props.onAddCounter}  />
+                <CounterControl label="- Subtract 15" clicked={this.props.onSubtractCounter}  />
+                <CounterControl label="* Multi 2" clicked={this.props.onMultiResult} />
                 <hr />
-                <button onClick={() => this.props.onStoreResult(this.props.ctr)}>
+                <button className="btn-primary" onClick={() => this.props.onStoreResult(this.props.ctr)}>
                     Store Results
                 </button>
                 <ul>
                     {this.props.storedResults.map(strResults => (
-                        <li key={strResults.id} onClick={() => this.props.onDeleteResult(strResults.id)}>
+                        <li className="list" key={strResults.id}>
                             {strResults.value}
+                            <button className="delete" onClick={() => this.props.onDeleteResult(strResults.id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
@@ -82,6 +67,10 @@ const mapDispatchToProps = dispatch => {
             type: actionTypes.DELETE_RESULTS,
             resultId: id
         }),
+        onMultiResult: () => dispatch({
+            type: actionTypes.MULTI,
+            value: 2
+        })
     }
 };
 

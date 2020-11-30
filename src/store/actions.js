@@ -4,3 +4,4 @@ export const ADD = 'ADD';
 export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULTS = 'STORE_RESULTS';
 export const DELETE_RESULTS = 'DELETE_RESULTS';
+export const MULTI = 'MULTI';

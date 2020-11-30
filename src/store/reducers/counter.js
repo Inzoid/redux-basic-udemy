@@ -25,6 +25,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 counter: state.counter  - action.value
             }
+        case actionTypes.MULTI:
+            return {
+                ...state,
+                counter: state.counter * action.value
+            }
     }
     return state;
 }
